@@ -24,7 +24,7 @@
     <ProjectGuid>{8aa12d95-396f-4051-96dc-f6536c4deef3}</ProjectGuid>
     <RootNamespace>week2practice</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>week3</ProjectName>
+    <ProjectName>Week3_149pg</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -124,7 +124,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="supplementary_week3.cpp" />
+    <ClCompile Include="w3_149pg.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
