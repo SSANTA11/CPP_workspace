@@ -25,10 +25,10 @@ bool Memo::isSameDate(Memo b) {
 	return this->date == b.date;
 }
 string Memo::getDate() {
-	return date;
+	return this->date;
 }
 string Memo::getContent() {
-	return content;
+	return this->content;
 }
 
 int main() {
