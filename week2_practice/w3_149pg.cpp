@@ -33,6 +33,7 @@ int Account::withdraw(int money) {
 		balance -= money;
 		return money;
 	}
+	money = balance;
 	balance = 0;
 	return money;
 }
@@ -41,7 +42,7 @@ int main() {
 
 	Account a("황수희"); 
 	a.deposit(20000);
-	cout << a.getOwner() << "의 "<< a.inquiry() << endl;
+	cout << a.getOwner() << "의 잔액은 "<< a.inquiry() << endl;
 	int money = a.withdraw(15000);
 	cout << money << "원 출금, ";
 	cout << a.getOwner() << "의 잔액은 " << a.inquiry() << endl;
