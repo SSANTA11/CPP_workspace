@@ -14,7 +14,7 @@ public: //멤버함수에 포함되는 기본 생성자와 생성자와 getArea함수
 //Circle::Circle() {
 //	radius = 1;
 //	cout << "반지름" << radius << "원생성" << endl;
-//}
+//} 
 Circle::Circle() :Circle(1) {} // '위임 생성자'라는 기능 --> 위의 기본 생성자와 동일한 역할, 동일한 구조일 경우 코드량을 줄이기 위해 사용
 // 위 내용을 "기본생성자로 다ㄹ른 함수를 호출하시오" 등의 워딩으로 출제될 수 있음
 Circle::Circle(int r) {
