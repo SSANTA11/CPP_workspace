@@ -185,118 +185,60 @@ using namespace std;
 //얕은 / 깊은 복사 : 이 예제는 멤버 변수가 int(기본 타입) 하나뿐이므로, 얕은 복사를 수행해도 잠재적인 문제(메모리 공유)는 발생하지 않습니다.하지만 포인터 멤버 변수가 있다면, 작성된 복사 생성자는 얕은 복사가 되어 문제가 될 수 있습니다.
 
 
-// 얕은 복사 생성자를 사용하여 프로그램이 비정상 종료되는 경우 & 깊은 복사 생성자(254pg)
-//class Person { // Person 클래스 선언
-//private:
-//    char* name;
-//    int id;
-//
-//public:
-//    // 복사 생성자 (컴파일러 디폴트 복사 생성자 대체)
-//    // 깊은 복사가 구현되지 않았음을 보여주기 위한 예제이므로, 
-//    // 여기서는 기본 타입만 복사하는 얕은 복사 형태로 구현된 것으로 가정합니다.
-//    Person(const Person& p) { // 깊은 복사가 아닌 얕은 복사 상황을 위한 코드 (주석)
-//        this->id = p.id;
-//        this->name = p.name; // 얕은 복사: 주소값만 복사 (문제의 핵심)
-//    }
-//
-//    // 생성자
-//    Person(int id, const char* name) {
-//        this->id = id;
-//        int len = strlen(name); // name의 문자열 길이 계산
-//        this->name = new char[len + 1]; // name 문자열 공간 할당
-//        strcpy(this->name, name); // name에 문자열 복사
-//    }
-//    Person(const Person& person) {
-//        this->id = person.id;
-//        int len = strlen(person.name);
-//        this->name = new char[len + 1];
-//        strcpy(this->name, person.name);
-//
-//    }
-//
-//    // 소멸자
-//    ~Person() {
-//        if (name) // 만약 name에 동적 할당된 배열이 있으면
-//            delete[] name; // 할당된 메모리 소멸
-//    }
-//
-//    // 이름 변경
-//    void changeName(const char* name) {
-//        if (strlen(name) > strlen(this->name)) // 현재 name에 할당된 메모리보다 새 이름이 더 길 경우 (변경 불가로 가정)
-//            return;
-//        strcpy(this->name, name); // name에 문자열 복사
-//    }
-//
-//    // 출력
-//    void show() {
-//        cout << this->id << ", " << this->name << endl;
-//    }
-//};
-//
-//int main() {
-//    Person father(1, "KiTae"); // (1) father 객체 생성
-//    Person daughter(father);   // (2) daughter 객체 복사 생성. 복사 생성자 호출.
-//
-//    cout << "daughter 객체 생성 직후 ----" << endl;
-//
-//    father.show(); // (3) father 객체 출력
-//    daughter.show(); // (3) daughter 객체 출력
-//
-//    daughter.changeName("Grace"); // (4) daughter의 이름을 "Grace"로 변경
-//    cout << "daughter 이름 Grace로 변경한 후 ----" << endl;
-//
-//    father.show(); // (5) father 객체 출력
-//    daughter.show(); // (5) daughter 객체 출력
-//
-//    return 0; // (6), (7) daughter, father 소멸
-//
-//}
-
-class Book{ // Person 클래스 선언
+ //얕은 복사 생성자를 사용하여 프로그램이 비정상 종료되는 경우 (254pg)
+class Person { // Person 클래스 선언
 private:
-    char* title;
-    int price;
+    char* name;
+    int id;
 
 public:
-    // 생성자
-    Book(int price, const char* title) {
-        this->price = price;
-        int len = strlen(title); // name의 문자열 길이 계산
-        this->title = new char[len + 1]; // name 문자열 공간 할당
-        strcpy(this->title, title); // name에 문자열 복사
-    }
-    Book(const Book& book) {
-        this->price = book.price;
-        int len = strlen(book.title);
-        this->title = new char[len + 1];
-        strcpy(this->title, book.title);
+    // 복사 생성자 (컴파일러 디폴트 복사 생성자 대체)
+    // 깊은 복사가 구현되지 않았음을 보여주기 위한 예제이므로, 
+    // 여기서는 기본 타입만 복사하는 얕은 복사 형태로 구현된 것으로 가정합니다.
 
+
+    // 생성자
+    Person(int id, const char* name) {
+        this->id = id;
+        int len = strlen(name); // name의 문자열 길이 계산
+        this->name = new char[len + 1]; // name 문자열 공간 할당
+        strcpy(this->name, name); // name에 문자열 복사
     }
 
     // 소멸자
-    ~Book() {
-        if (title) // 만약 name에 동적 할당된 배열이 있으면
-            delete[] title; // 할당된 메모리 소멸
+    ~Person() {
+        if (name) // 만약 name에 동적 할당된 배열이 있으면
+            delete[] name; // 할당된 메모리 소멸
     }
 
     // 이름 변경
     void changeName(const char* name) {
-        if (strlen(name) > strlen(this->title)) // 현재 name에 할당된 메모리보다 새 이름이 더 길 경우 (변경 불가로 가정)
+        if (strlen(name) > strlen(this->name)) // 현재 name에 할당된 메모리보다 새 이름이 더 길 경우 (변경 불가로 가정)
             return;
-        strcpy(this->title, title); // name에 문자열 복사
+        strcpy(this->name, name); // name에 문자열 복사
     }
 
     // 출력
     void show() {
-        cout << this->price << " " << this->title << endl;
+        cout << this->id << ", " << this->name << endl;
     }
 };
 
-
 int main() {
-    Book cpp("c++", 10000);
-    Book java = cpp;
-    cpp.show();
-    
+    Person father(1, "KiTae"); // (1) father 객체 생성
+    Person daughter(father);   // (2) daughter 객체 복사 생성. 복사 생성자 호출.
+
+    cout << "daughter 객체 생성 직후 ----" << endl;
+
+    father.show(); // (3) father 객체 출력
+    daughter.show(); // (3) daughter 객체 출력
+
+    daughter.changeName("Grace"); // (4) daughter의 이름을 "Grace"로 변경
+    cout << "daughter 이름 Grace로 변경한 후 ----" << endl;
+
+    father.show(); // (5) father 객체 출력
+    daughter.show(); // (5) daughter 객체 출력
+
+    return 0; // (6), (7) daughter, father 소멸
+
 }
