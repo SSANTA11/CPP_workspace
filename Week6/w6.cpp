@@ -32,7 +32,7 @@ using namespace std;
 //    }
 //  // 시험에서 const를 쓸 수 있는 곳에 최대한 쓰라고 하는 문제가 나올 수 있다.
 //복사 생성자는 통상의 경우 const를 반드시 필요로한다.
-//    Circle(const Circle& c) { // 복사 생성자!! (만약 참조에 의한 호출을 한다면 복사생성자가 복사생성자를 찾는 무한 루프를 타게 될 수도....!)
+//    Circle(const Circle& c) { // 복사 생성자!!
 //        this->radius = c.radius;
 //        cout << "복사 생성자 실행 radius = " << radius << endl;
 //    }
@@ -116,7 +116,6 @@ using namespace std;
 // 1번
 //void twice(int& ss) {
 //    ss *= 2;
-// 
 //}
 //
 //int main() {

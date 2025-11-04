@@ -126,7 +126,8 @@ public:
 //    }
 //    Circle* p = circleArray; // 배열 이름은 주소이므로 포인터에 대입가능. 이때 배열의 이름은 첫 원소의 주소를 가르키고 있다.(참고로 배열의 각 원소들은 연속된다...!)
 //    for (int i = 0; i < 3; i++) { //객체 포인터로 배열원소 접근가능
-//        cout << "Circle" << i << "의 면적은"<<p->getArea() << endl; // 포인터를 증가시키면 다음 원소를 가르킴
+//        cout << "Circle" << i << "의 면적은"<<p->getArea() << endl; 
+//        p++; // 포인터를 증가시키면 다음 원소를 가르킴
 //
 //    }
 //    delete[] circleArray;
