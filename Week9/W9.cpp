@@ -42,7 +42,7 @@ using namespace std;
 //		cout << Random::nextInt(20000) << endl;
 //	}
 //}
-// 위 예제 기말 포인트 :  static과 랜덤의 관계에서 private으로 선언한 이유와 static bool initialized을 static으로 선언한이유
+// 위 예제 기말 포인트 :  static과 랜덤의 관계에서 랜덤을 private으로 선언한 이유와 static bool initialized을 static으로 선언한 이유
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------
