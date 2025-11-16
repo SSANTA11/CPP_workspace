@@ -344,13 +344,15 @@ public:
 class NamedCircle : public Circle {
 	string name;
 public:
-	NamedCircle(int r, string name): Circle(r) {
+	NamedCircle(int r=0, string name="") : Circle(r) {
 		this->name = name;
 	}
 	void show() {
 		cout << "r = " << getRadius() << ", name = " << name;
 	}
-
+	void setName(string name) {
+		this->name = name;
+	}
 };
 int main() {
 	NamedCircle pizza[5];
