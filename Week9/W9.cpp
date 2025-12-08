@@ -7,10 +7,10 @@
 // 6.2 디폴트 매개변수 291pg
 	// 디폴트 매개변수에 관한 제약조건!
 		// 기본형태 -> void msg(int a=5)
-
+	
 	// 지켜야할 규칙
 		// 매개변수가 다수일 경우 디폴트 매개변수는 모두 끝에 몰려 선언되어야 한다.
-
+	
 	// 함수 중복의 간소화 296pg
 		// (예를 들어 생성자에서 기본 생성자와 추가적인 생성자를 한번에 처리 가능) 
 
@@ -144,14 +144,14 @@ public:
 	void show() {
 		cout << "kick: " << kick << ", punch: " << punch << endl;
 	}
-
+	
 	Power operator + (const Power& op2) {
 		Power tmp;
 		tmp.kick = this->kick + op2.kick;
 		tmp.punch = this->punch + op2.punch;
 		return tmp;
 	}
-
+	
 	bool operator == (const Power& op2) {
 		if ((this->kick == op2.kick) && (this->punch == op2.punch))
 			return true;
@@ -172,8 +172,8 @@ public:
 		tmp.punch = punch + op2;
 		return tmp;
 	}
-
-	bool operator < (const Power& op2) {
+	
+	bool operator < (const Power & op2) {
 		int thisPower = this->kick * this->kick + this->punch * this->punch;
 		int op2Power = op2.kick * op2.kick + op2.punch * op2.punch;
 
@@ -193,7 +193,7 @@ public:
 	// ▲ 2+a를 위한 + 연산자 함수를 프렌드로 작성 361pg
 	friend ostream& operator<<(ostream& os, const Power& op);
 };
-ostream& operator<<(ostream& os, const Power& op) {
+ostream&operator<<(ostream& os, const Power& op) {
 	os << "kick: " << op.kick << ", punch: " << op.punch << endl;
 	return os;
 }
@@ -211,8 +211,8 @@ int main() {
 	b.show();
 	c.show();
 
-	if (a == b) {
-		// ▲ 내부적으로 a.operator==(b);로 동작함 347pg
+	if (a==b) {
+	// ▲ 내부적으로 a.operator==(b);로 동작함 347pg
 		cout << "a와 b는 같다!" << endl;
 	}
 	else {
@@ -227,7 +227,7 @@ int main() {
 	if (b < a) {
 		cout << "a가 b보다 크다!" << endl;
 	}
-	else if (b > a) {
+	else if(b > a) {
 		cout << "b가 a보다 크다!" << endl;
 	}
 	// ▲ 내부적으로 b.operator<(a);, b.operator>(a);로 동작함
