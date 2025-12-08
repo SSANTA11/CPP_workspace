@@ -19,7 +19,7 @@ using namespace std;
 
 
 
-//10장 켐플릿과 표준 템플릿 라이브러리(STL) pg483
+//10장 템플릿과 표준 템플릿 라이브러리(STL) pg483
 //제너릭 또는 일반화(ctrl+f 처럼 찾아 바꾸기!!! 한다 라고 기억하자)
 	// 일반화와 템플릿 483pg~484pg
 //template <class T> 하나짜리(class는 typeName으로 바꿔도 된다)
