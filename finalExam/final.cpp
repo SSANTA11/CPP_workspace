@@ -3,10 +3,10 @@
 // 오버라이딩은 다형성의 한사례이다 --- 시험 출제 포인트 287
 
 // static 사용의 이유 --- 시험 출제 포인트 324
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
-using namespace std;
+//#include <iostream>
+//#include <cstdlib>
+//#include <ctime>
+//using namespace std;
 
 //class Random {
 //private:
@@ -60,4 +60,177 @@ using namespace std;
 //}
 
 // 프렌드 함수의 전방 참조 --- 334 예제
+//#include <iostream>
+//using namespace std;
+//
+//class Power {
+//private:
+//	int kick, punch;
+//public:
+//	Power(int kick = 0, int punch = 0) {
+//		this->kick = kick;
+//		this->punch = punch;
+//	}
+//	void show() const {
+//		cout <<"Kick: " << kick << "\nPunch: " << punch << endl;
+//	}
+//
+//	Power operator+(const Power& p) {
+//		Power tmp;
+//		tmp.kick = this->kick + p.kick;
+//		tmp.punch = this->punch + p.punch;
+//		return tmp;
+//	}
+	//Power operator+(const Power& p) const {
+	//	Power tmp;
+	//	tmp.kick = this->kick + p.kick;
+	//	tmp.punch = this->punch + p.punch;
+	//	return tmp;
+	//}
 
+	//bool operator==(const Power& p) const {
+	//	if (this->kick == p.kick && this->punch == p.punch) {
+	//		return true;
+	//	}
+	//	return false;
+	//}
+
+	//Power& operator+=(const Power& p) {
+	//	this->kick += p.kick;
+	//	this->punch += p.punch;
+	//	return *this;
+	//}
+//};
+//int main() {
+//	Power p0, p1(10, 10), p2(1, 2);
+//	p0 = p1 + p2;
+//	p0.show();
+//}
+
+//#include <iostream>
+//#include <cstring>
+//using namespace std;
+//
+//class Point {
+//	int x, y;
+//public:
+//	void set(int x, int y) {
+//		this->x = x;
+//		this->y = y;
+//	}
+//	void showPoint() {
+//		cout << "(" << x << "," << y << ")" << endl;
+//	}
+//};
+//
+//class ColorPoint : public Point {
+//	string color;
+//public:
+//	void setColor(string color) {
+//		this->color = color;
+//	}
+//	void showColorPoint() {
+//		cout << color << ":";
+//		showPoint();
+//	}
+//};
+//int main() {
+//	ColorPoint cp;
+//	ColorPoint* pDer = &cp;
+//	Point* pBase = pDer;
+//	pDer->set(1,2);
+//	pBase->showPoint();
+//	pDer->setColor("red");
+//	pDer->showColorPoint();
+//	pDer = (ColorPoint*)pBase;
+//
+//}
+//int main() {
+//	ColorPoint* pDer;
+//	Point* pBase, po;
+//	pBase = &po;
+//	pDer = (ColorPoint*)pBase;
+//}
+
+//class Circle {
+//	int radius;
+//public:
+//	Circle(int radius = 0) {
+//		this->radius = radius;
+//	}
+//	~Circle() {
+//
+//		cout << "\n반지름 " << radius << "원 소멸\n";
+//	}
+//	int getRadius() {
+//		return radius;
+//	}
+//	void setRadius(int radius) {
+//		this->radius = radius;
+//	}
+//	double getArea() {
+//		return 3.14 * radius * radius;
+//	}
+//};
+//class NamedCircle : public Circle {
+//	string name;
+//public:
+//	NamedCircle(int r, string name) : Circle(r) {
+//		this->name = name;
+//	}
+//	void show() {
+//		cout << "반지름이 " << getRadius() << "인 " << name;
+//	}
+//};
+//int main() {
+//	NamedCircle waffle(3, "waffle");
+//	waffle.show();
+//}
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+class Point {
+	int x, y;
+public:
+	Point(int x, int y) {
+		this->x = x;
+		this->y = y;
+	}
+	int getX() {
+		return x;
+	}
+	int getY() {
+		return y;
+	}
+protected:
+	void move(int x, int y) {
+		this->x = x;
+		this->y = y;
+	}
+};
+
+class ColorPoint : public Point{
+	string color;
+public:
+	ColorPoint(int x, int y, string color) :Point(x, y) {
+		this->color = color;
+	}
+	void setPoint(int x, int y) {
+		move(x, y);
+	}
+	void setColor(string color) {
+		this->color = color;
+	}
+	void show() {
+		cout << color << "색으로 (" << getX() << ", " << getY() << ")에 위치한 점입니다.";
+	}
+};
+
+int main() {
+	ColorPoint cp(5, 5, "RED");
+	cp.setPoint(30, 40);
+	cp.setColor("BLUE");
+	cp.show();
+}

@@ -17,7 +17,15 @@ using namespace std;
 //		this->number = number;
 //	}
 //	friend ostream& operator<<(ostream& op1, const MyID& op2);
-//	bool operator<(const MyID& op2)const { // 여기서 뒤에 const는 반드시 있어야 한다.!!!!!!?? Why???? 첫번째 const와 &는 없어도 됨! -->why??
+// // 맵 템플릿 클래스 내부에는 키에 대한 작다 부등호 연산자 로직이 존재한다. 때문에 키에 부등호가 적용되지 않는 타입이 오면 별도의 연산자 중복이 필요하다.
+//	bool operator<(const MyID& op2)const {// 원본은 넘겨주지만 수정은 불가함
+//	bool operator<(MyID& op2)const { 이건 안됨
+//	bool operator<(MyID op2)const { 이건 가능
+// 뒤에 const의 의미: 자신의 맴버 변수를 건드리지 않는다를 의미한다.-----------------시험 출제
+// 앞에 오는 const의 의미-----------------시험 출제
+// const를 쓸수 있는곳에 모두 쓰시오-----------------시험 출제
+// 
+// // 여기서 뒤에 const는 반드시 있어야 한다.!!!!!!?? Why???? 첫번째 const와 &는 없어도 됨! -->why??
 //		if (code < op2.code)
 //			return true;
 //		else if (code == op2.code) {
