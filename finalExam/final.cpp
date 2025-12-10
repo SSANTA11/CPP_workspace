@@ -1,12 +1,12 @@
-//½ÃÇè ÃßÁ¦ Á¤¸® ¹× ±âÁ¸ ÄÚµå º¹½À
+ï»¿//ì‹œí—˜ ì¶”ì œ ì •ë¦¬ ë° ê¸°ì¡´ ì½”ë“œ ë³µìŠµ
 
-// ¿À¹ö¶óÀÌµùÀº ´ÙÇü¼ºÀÇ ÇÑ»ç·ÊÀÌ´Ù --- ½ÃÇè ÃâÁ¦ Æ÷ÀÎÆ® 287
+// ì˜¤ë²„ë¼ì´ë”©ì€ ë‹¤í˜•ì„±ì˜ í•œì‚¬ë¡€ì´ë‹¤ --- ì‹œí—˜ ì¶œì œ í¬ì¸íŠ¸ 287
 
-// static »ç¿ëÀÇ ÀÌÀ¯ --- ½ÃÇè ÃâÁ¦ Æ÷ÀÎÆ® 324
-//#include <iostream>
-//#include <cstdlib>
-//#include <ctime>
-//using namespace std;
+// static ì‚¬ìš©ì˜ ì´ìœ  --- ì‹œí—˜ ì¶œì œ í¬ì¸íŠ¸ 324
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
 
 //class Random {
 //private:
@@ -28,12 +28,12 @@
 //		cout << Random::nextInt(20000) << endl;
 //	}
 //}
-// À§ ¿¹Á¦ ±â¸» Æ÷ÀÎÆ® :  static°ú ·£´ıÀÇ °ü°è¿¡¼­ ·£´ıÀ» privateÀ¸·Î ¼±¾ğÇÑ ÀÌÀ¯¿Í static bool initializedÀ» staticÀ¸·Î ¼±¾ğÇÑ ÀÌÀ¯
-	// ºÒÇÊ¿äÇÑ °´Ã¼ »ı¼ºÀ» ¹æÁö ÇÑ´Ù´Â Á¡¿¡¼­ ½Ì±ÛÅÏ°ú À¯»çÇØ º¸ÀÌ³ª, °´Ã¼ »ı¼ºÀ» ¾Æ¿¹ ¹æÁö ÇÑ´Ù´Â Á¡¿¡¼­ Â÷ÀÌ°¡ ÀÖ´Ù. 
-	// ÇØ´ç ·ÎÁ÷¿¡¼­´Â ±»ÀÌ °´Ã¼¸¦ »ı¼ºÇÒ ÇÊ¿ä°¡ ¾øÀ½À¸·Î »ı¼ºÀÚ¸¦ privateÀ¸·Î µ¹¸®°í ³ª¸ÓÁö ÇÊµå¿Í ¸Ş¼­µå¸¦ staticÀ¸·Î ¸¸µé¾ú°í
-	// ³»ºÎÀÇ Á¶°Ç¹®À» ÅëÇØ ÇØ´ç Å¬·¡½ºÀÇ ÃÊ±âÈ­´Â ´Ü ÇÑ¹ø¸¸ ÀÏ¾î³²À» º¸ÀåÇÏ°í Å¬·¡½º¸í::¸Ş¼­µå ÇüÅÂ·Î ¿øÇÏ´Â °á°ú¸¦ ¾òÀ» ¼ö ÀÖ´Ù. 
+// ìœ„ ì˜ˆì œ ê¸°ë§ í¬ì¸íŠ¸ :  staticê³¼ ëœë¤ì˜ ê´€ê³„ì—ì„œ ëœë¤ì„ privateìœ¼ë¡œ ì„ ì–¸í•œ ì´ìœ ì™€ static bool initializedì„ staticìœ¼ë¡œ ì„ ì–¸í•œ ì´ìœ 
+	// ë¶ˆí•„ìš”í•œ ê°ì²´ ìƒì„±ì„ ë°©ì§€ í•œë‹¤ëŠ” ì ì—ì„œ ì‹±ê¸€í„´ê³¼ ìœ ì‚¬í•´ ë³´ì´ë‚˜, ê°ì²´ ìƒì„±ì„ ì•„ì˜ˆ ë°©ì§€ í•œë‹¤ëŠ” ì ì—ì„œ ì°¨ì´ê°€ ìˆë‹¤. 
+	// í•´ë‹¹ ë¡œì§ì—ì„œëŠ” êµ³ì´ ê°ì²´ë¥¼ ìƒì„±í•  í•„ìš”ê°€ ì—†ìŒìœ¼ë¡œ ìƒì„±ìë¥¼ privateìœ¼ë¡œ ëŒë¦¬ê³  ë‚˜ë¨¸ì§€ í•„ë“œì™€ ë©”ì„œë“œë¥¼ staticìœ¼ë¡œ ë§Œë“¤ì—ˆê³ 
+	// ë‚´ë¶€ì˜ ì¡°ê±´ë¬¸ì„ í†µí•´ í•´ë‹¹ í´ë˜ìŠ¤ì˜ ì´ˆê¸°í™”ëŠ” ë‹¨ í•œë²ˆë§Œ ì¼ì–´ë‚¨ì„ ë³´ì¥í•˜ê³  í´ë˜ìŠ¤ëª…::ë©”ì„œë“œ í˜•íƒœë¡œ ì›í•˜ëŠ” ê²°ê³¼ë¥¼ ì–»ì„ ìˆ˜ ìˆë‹¤. 
 
-// ÇÁ·»µå ÇÔ¼ö --- 332 ¿¹Á¦
+// í”„ë Œë“œ í•¨ìˆ˜ --- 332 ì˜ˆì œ
 //class Rect {
 //	int width, height;
 //public:
@@ -59,7 +59,7 @@
 //	}
 //}
 
-// ÇÁ·»µå ÇÔ¼öÀÇ Àü¹æ ÂüÁ¶ --- 334 ¿¹Á¦
+// í”„ë Œë“œ í•¨ìˆ˜ì˜ ì „ë°© ì°¸ì¡° --- 334 ì˜ˆì œ
 //#include <iostream>
 //using namespace std;
 //
@@ -160,7 +160,7 @@
 //	}
 //	~Circle() {
 //
-//		cout << "\n¹İÁö¸§ " << radius << "¿ø ¼Ò¸ê\n";
+//		cout << "\në°˜ì§€ë¦„ " << radius << "ì› ì†Œë©¸\n";
 //	}
 //	int getRadius() {
 //		return radius;
@@ -179,7 +179,7 @@
 //		this->name = name;
 //	}
 //	void show() {
-//		cout << "¹İÁö¸§ÀÌ " << getRadius() << "ÀÎ " << name;
+//		cout << "ë°˜ì§€ë¦„ì´ " << getRadius() << "ì¸ " << name;
 //	}
 //};
 //int main() {
@@ -187,50 +187,253 @@
 //	waffle.show();
 //}
 
-#include <iostream>
-#include <cstring>
-using namespace std;
+//#include <iostream>
+//#include <cstring>
+//using namespace std;
+//
+//class Point {
+//	int x, y;
+//public:
+//	Point(int x, int y) {
+//		this->x = x;
+//		this->y = y;
+//	}
+//	int getX() {
+//		return x;
+//	}
+//	int getY() {
+//		return y;
+//	}
+//protected:
+//	void move(int x, int y) {
+//		this->x = x;
+//		this->y = y;
+//	}
+//};
+//
+//class ColorPoint : public Point{
+//	string color;
+//public:
+//	ColorPoint(int x, int y, string color) :Point(x, y) {
+//		this->color = color;
+//	}
+//	void setPoint(int x, int y) {
+//		move(x, y);
+//	}
+//	void setColor(string color) {
+//		this->color = color;
+//	}
+//	void show() {
+//		cout << color << "ìƒ‰ìœ¼ë¡œ (" << getX() << ", " << getY() << ")ì— ìœ„ì¹˜í•œ ì ì…ë‹ˆë‹¤.";
+//	}
+//};
+//
+//int main() {
+//	ColorPoint cp(5, 5, "RED");
+//	cp.setPoint(30, 40);
+//	cp.setColor("BLUE");
+//	cp.show();
+//}
 
-class Point {
-	int x, y;
-public:
-	Point(int x, int y) {
-		this->x = x;
-		this->y = y;
-	}
-	int getX() {
-		return x;
-	}
-	int getY() {
-		return y;
-	}
-protected:
-	void move(int x, int y) {
-		this->x = x;
-		this->y = y;
-	}
-};
 
-class ColorPoint : public Point{
-	string color;
-public:
-	ColorPoint(int x, int y, string color) :Point(x, y) {
-		this->color = color;
+
+
+
+//í´ë˜ìŠ¤ ê³„ì¸µ êµ¬ì¡° ë° ë©¤ë²„ :
+//Animal í´ë˜ìŠ¤ëŠ” ì¶”ìƒ í´ë˜ìŠ¤ì—¬ì•¼ í•©ë‹ˆë‹¤. (sound() ë©”ì„œë“œì˜ = 0ì„ ìœ ì§€).
+//Animal í´ë˜ìŠ¤ëŠ” weight í•„ë“œì™€ getWeight() ë©”ì„œë“œë¥¼ ê°€ì ¸ì•¼ í•©ë‹ˆë‹¤.
+//Dogì™€ Catì€ Animalì„ ê³µê°œ ìƒì†(:public Animal)í•´ì•¼ í•˜ë©°, ê°ìì˜ ê³ ìœ  í•„ë“œ(fangSize, clawSharpness)ë¥¼ ê°€ì ¸ì•¼ í•©ë‹ˆë‹¤.
+
+//ìƒì„±ì ë° ì´ˆê¸°í™” :
+//ëª¨ë“  í´ë˜ìŠ¤ëŠ” ì›ë³¸ ì½”ë“œì— ëª…ì‹œëœ í˜•íƒœì˜ ìƒì„±ì ì´ˆê¸°í™” ë¦¬ìŠ¤íŠ¸ë¥¼ ì‚¬ìš©í•´ì•¼ í•©ë‹ˆë‹¤. (ì˜ˆ : Dog(...) : Animal(...)).
+
+//ë‹¤í˜•ì„± ê°•ì œ :
+//ë°°ì—´ì„ ì‚¬ìš©í•˜ì§€ ì•Šê³  ë‹¤í˜•ì„±ì„ êµ¬í˜„í•´ì•¼ í•©ë‹ˆë‹¤. (í•¨ìˆ˜ ë˜ëŠ” ì»¨í…Œì´ë„ˆ í™œìš©).
+//sound() ë©”ì„œë“œë¥¼ í˜¸ì¶œí•  ë•ŒëŠ” ë°˜ë“œì‹œ Animal* í¬ì¸í„° ë˜ëŠ” Animal& ì°¸ì¡°ë¥¼ í†µí•´ í˜¸ì¶œí•´ì•¼ í•©ë‹ˆë‹¤.
+//ë©”ëª¨ë¦¬ í•´ì œ ë° ê°€ìƒ ì†Œë©¸ì :
+//ëª¨ë“  ê°ì²´ëŠ”** í™(Heap)** ì— newë¡œ í• ë‹¹ë˜ì–´ì•¼ í•©ë‹ˆë‹¤.
+//Animal í´ë˜ìŠ¤ì˜ ì†Œë©¸ìëŠ” ë°˜ë“œì‹œ virtualë¡œ ì„ ì–¸ë˜ì–´ì•¼ í•˜ë©°, deleteë¥¼ í†µí•´ ì˜¬ë°”ë¥´ê²Œ ì†Œë©¸(Dog / Cat ì†Œë©¸ì->Animal ì†Œë©¸ì ìˆœ)ë˜ì–´ì•¼ í•©ë‹ˆë‹¤.
+
+//ğŸ“œ ìš”êµ¬ ì‚¬í•­
+//main í•¨ìˆ˜ ë‚´ì—ì„œ ë‹¤ìŒì„ ìˆœì„œëŒ€ë¡œ ìˆ˜í–‰í•˜ëŠ” ì½”ë“œë¥¼ ì‘ì„±í•˜ì‹­ì‹œì˜¤.
+//Animal í¬ì¸í„° ë³€ìˆ˜ 3ê°œë¥¼ ì„ ì–¸í•˜ê³ , ê°ê° Dog, Cat, Dog ê°ì²´ë¥¼ ì›ë³¸ ì½”ë“œì™€ ë™ì¼í•œ ì¸ì ê°’ìœ¼ë¡œ ë™ì  í• ë‹¹í•©ë‹ˆë‹¤.
+//í• ë‹¹ëœ ê°ì²´ 3ê°œë¥¼ Animal * í¬ì¸í„° ë˜ëŠ” Animal & ì°¸ì¡°ë¥¼ ì¸ìˆ˜ë¡œ ë°›ëŠ” * *í•¨ìˆ˜(ë˜ëŠ” ì»¨í…Œì´ë„ˆ ìˆœíšŒ) * *ë¥¼ í†µí•´ ìˆœì„œëŒ€ë¡œ sound()ë¥¼ í˜¸ì¶œí•˜ê²Œ í•©ë‹ˆë‹¤.
+//í• ë‹¹ëœ 3ê°œì˜ ê°ì²´ë¥¼ ìˆœì„œëŒ€ë¡œ deleteë¥¼ í†µí•´ í•´ì œí•©ë‹ˆë‹¤.
+
+//class Animal {
+//private:
+//	int weight;
+//public:
+//	Animal(int weight = 0) {
+//		this->weight = weight;// ìì‹ìœ¼ë¡œë¶€í„°ì˜ í˜¸ì¶œë•Œë¬¸ì— ìƒì„±ìê°€ ì¡´ì¬
+//	}
+//	~Animal() {
+//		cout << "Animal::~Animal()\n";
+//	}
+//	void virtual sound() = 0;
+//
+//	int getWeight() {
+//		return this->weight;
+//	}
+//};
+//
+//class Dog :public Animal {
+//	int fangSize;
+//public:
+//	Dog(int fangSize, int weight) :Animal(weight) {
+//		this->fangSize = fangSize;
+//	}
+//	~Dog() {
+//		cout << "Dog::~Dog()\n";
+//	}
+//	int getFangSize() {
+//		return fangSize;
+//	}
+//	void virtual sound() {
+//		cout << "woof" << endl;
+//	}
+//
+//};
+//
+//class Cat :public Animal {
+//	int clawSharpness;
+//public:
+//	Cat(int clawSharpness, int weight) :Animal(weight) {
+//		this->clawSharpness = clawSharpness;
+//	}
+//	~Cat() {
+//		cout << "Cat::~Cat()\n";
+//	}
+//	int getClawSharpness() {
+//		return clawSharpness;
+//	}
+//	void virtual sound() {
+//		cout << "meow" << endl;
+//	}
+//
+//};
+//int main() {
+//	Animal* a[3];
+//	a[0] = new Dog(10, 15);
+//	a[1] = new Cat(5, 1);
+//	a[2] = new Dog(3, 150);
+//	for (int i = 0; i < 3; i++)
+//		a[i]->sound();
+//	for (int i = 0; i < 3; i++)
+//		delete a[i];
+//}
+//template <typename T>
+//
+//T bigger(T a, T b) {
+//	if (a < b) {
+//		return b;
+//	}
+//	else if (a == b) {
+//		cout << "ë™ì¼í•©ë‹ˆë‹¤.";
+//		return 111111;
+//	}
+//	return a;
+//}
+//int main() {
+//	int a = 1, b = 2;
+//	cout<<bigger(a, b);
+//}
+//template <class T>
+//class Stack {
+//	int tos = -1;
+//	T data[100];
+//public:
+//	void push(T element) {
+//		if (tos == 99) {
+//			return;
+//		}
+//		data[++tos] = element;
+//	}
+//	T pop() {
+//		if (tos == 1) {
+//			return 0;
+//		}
+//		return data[tos--];
+//	}
+//};
+//int main() {
+//	Stack<int> myStack;
+//	myStack.push(1);
+//	myStack.push(1);
+//	myStack.push(1);
+//	myStack.push(1);
+//	myStack.push(1);
+//	cout << myStack.pop();
+//	cout << myStack.pop();
+//	cout << myStack.pop();
+//	cout << myStack.pop();
+//	cout << myStack.pop();
+//}
+
+#include<vector>
+//int main() {
+//	vector<int> v;
+//	vector<int>::iterator it;
+//	v.push_back(1);
+//	v.push_back(10);
+//	v.push_back(100);
+//	for (int i: v) {
+//		cout << i << " ";
+//	}
+//	cout << "\n";
+//}
+
+//int main() {
+//	vector<int> v;
+//	v.push_back(1);
+//	v.push_back(10);
+//	v.push_back(100);
+//	for (int i = 0;i < v.size();i++) {
+//		cout << v.at(i) << " ";
+//	}
+//	cout << "\n";
+//	for (int i = 0;i < v.size();i++) {
+//		cout << v[i] << " ";
+//	}
+//	cout << "\n";
+//	for (int i : v) {
+//		cout << i << " ";
+//	}
+//	cout << "\n";
+//	vector<int>::iterator it;
+//	for (it = v.begin();it != v.end();it++) {
+//		cout << *it << " ";
+//	}
+//	cout << "\n";
+//}
+
+void print_vector(const vector<int>& v) {
+	for (int i : v) {
+		cout << i << " ";
 	}
-	void setPoint(int x, int y) {
-		move(x, y);
-	}
-	void setColor(string color) {
-		this->color = color;
-	}
-	void show() {
-		cout << color << "»öÀ¸·Î (" << getX() << ", " << getY() << ")¿¡ À§Ä¡ÇÑ Á¡ÀÔ´Ï´Ù.";
-	}
-};
+	cout << "\n";
+}
 
 int main() {
-	ColorPoint cp(5, 5, "RED");
-	cp.setPoint(30, 40);
-	cp.setColor("BLUE");
-	cp.show();
+	vector<int> v;
+	vector<int>::iterator it;
+	for (int i = 1;i <= 20;i++) {
+		v.push_back(i / 2);
+	}
+	print_vector(v);
+	cout << "ì‚­ì œí•  ê°’: ";
+	int n;
+	cin >> n;
+
+	it = v.begin();
+	while (it != v.end()) {
+		if (*it == n) {
+			it = v.erase(it);
+		}
+		else {
+			it++;
+		}
+
+	}
+	print_vector(v);
 }
