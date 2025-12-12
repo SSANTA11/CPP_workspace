@@ -370,7 +370,7 @@ using namespace std;
 //	cout << myStack.pop();
 //}
 
-#include<vector>
+//#include<vector>
 //int main() {
 //	vector<int> v;
 //	vector<int>::iterator it;
@@ -407,33 +407,193 @@ using namespace std;
 //	cout << "\n";
 //}
 
-void print_vector(const vector<int>& v) {
-	for (int i : v) {
-		cout << i << " ";
-	}
-	cout << "\n";
-}
+//void print_vector(const vector<int>& v) {
+//	for (int i : v) {
+//		cout << i << " ";
+//	}
+//	cout << "\n";
+//}
+//
+//int main() {
+//	vector<int> v;
+//	vector<int>::iterator it;
+//	for (int i = 1;i <= 20;i++) {
+//		v.push_back(i / 2);
+//	}
+//	print_vector(v);
+//	cout << "삭제할 값: ";
+//	int n;
+//	cin >> n;
+//
+//	it = v.begin();
+//	while (it != v.end()) {
+//		if (*it == n) {
+//			it = v.erase(it);
+//		}
+//		else {
+//			it++;
+//		}
+//
+//	}
+//	print_vector(v);
+//}
 
-int main() {
-	vector<int> v;
-	vector<int>::iterator it;
-	for (int i = 1;i <= 20;i++) {
-		v.push_back(i / 2);
-	}
-	print_vector(v);
-	cout << "삭제할 값: ";
-	int n;
-	cin >> n;
+//#include <iostream>
+//#include <string>
+//using namespace std;
+//
+//class OutOfBoundsException {
+//	string msg;
+//public:
+//	OutOfBoundsException(string msg) { this->msg = msg; }
+//	void print() { cout << msg << endl; }
+//};
+//
+//template <typename T>
+//class MyArray {
+//	T* data;	// 동적배열 포인터
+//	int size;	// 배열크기(원소 수)
+//public:
+//	MyArray(int size = 16) {
+//		data = new T[size];
+//		this->size = size;
+//	}
+//	~MyArray() {
+//		if (data) {
+//			delete[] data;
+//			data = 0;
+//		}
+//	}
+//	// [] 연산자는 배열원소의 값을 리턴하는 것이 아니고 배열원소 자체(참조)를 리턴해야 함.
+//	// 이해가 되지 않으면 &를 삭제(T&를 T로)하고 컴파일 해볼 것.
+//	T& operator[](int index) throw(OutOfBoundsException) {
+//		if (index > -1 && index < size)
+//			return data[index];
+//
+//		string func(__FUNCTION__);
+//		throw OutOfBoundsException("Array Out of Bounds Exception in " + func
+//			+ " LINE: " + to_string(__LINE__) + ", index = " + to_string(index)
+//			+ ", size = " + to_string(size));
+//	}
+//};
+//int main() {
+//	MyArray<double> a(5);	// 원소 5개인 실수 배열
+//	try {
+//		for (int i = 0; i < 5; i++)
+//			a[i] = (double)(i + 1) / 10;
+//		for (int i = 0; i < 5; i++)
+//			cout << a[i] << ' ';
+//		cout << endl;
+//		a[5] = 0.6;	// 인덱스 범위(0~4)를 벗어나서 예외 발생
+//	}
+//	catch (OutOfBoundsException e) { e.print(); }
+//
+//	MyArray<int> b;	// 원소 16개인 정수 배열
+//	try {
+//		for (int i = 0; i < 16; i++)
+//			b[i] = i + 1;
+//		for (int i = 0; i < 16; i++)
+//			cout << b[i] << ' ';
+//		cout << endl;
+//		cout << b[16] << endl;	// 인덱스 범위(0~15)를 벗어나서 예외 발생
+//	}
+//	catch (OutOfBoundsException e) { e.print(); }
+//}
+#include <iostream>
+#include <cstring>
+using namespace std;
 
-	it = v.begin();
-	while (it != v.end()) {
-		if (*it == n) {
-			it = v.erase(it);
+class MyStackDataException {
+	string msg;  // 예외에 대한 설명
+	int size;  // 스택 데이터를 저장하는 배열의 크기
+	int numOfData;  // 현재 스택에 들어있는 데이터 개수
+public:
+	MyStackDataException(string msg, int size, int numOfData) {
+		this->msg = msg;
+		this->size = size;
+		this->numOfData = numOfData;
+	}
+	void print() {
+		cout << msg << ", size = " << size << ", num of data = " << numOfData << endl;
+	}
+};
+
+template <typename T>
+class MyGenStack {
+	int tos = -1;
+	int size;
+	T* data;
+public:
+	MyGenStack(int size = 8) {
+		this->size = size;
+		data = new T[size];
+	}
+	~MyGenStack() {
+		delete[] data;
+	}
+	void push(T element) throw(MyStackDataException) {
+		cout << "push 시도\n";
+		if (tos == size - 1) {
+			throw MyStackDataException("Stack full", this->size, tos);
 		}
 		else {
-			it++;
+			tos++;
+			data[tos] = element;
+			cout << "성공:" << element << endl;
 		}
-
 	}
-	print_vector(v);
+	T pop() throw(MyStackDataException) {
+		cout << "pop 시도\n";
+		if (tos == -1) {
+			throw MyStackDataException("Stack empty", this->size, tos);
+		}
+		else {
+			cout << "성공:" << data[tos] << endl;
+			return data[tos--];
+		}
+	}
+	int length() {
+		return size;
+	}
+};
+
+
+int main() {
+	MyGenStack<int> a(5);
+	cout << "--------------------------------------------------\n정수 stack 크기 = " << a.length() << endl;
+	try {
+		for (int i = 0;i < 6;i++) {
+			a.push(i + 1);
+		}
+	}
+	catch (MyStackDataException e) {
+		e.print();
+	}
+	try {
+		for (int i = 0;i < 6;i++) {
+			a.pop();
+		}
+	}
+	catch (MyStackDataException e) {
+		e.print();
+	}
+	MyGenStack<double> b;
+	cout << "--------------------------------------------------\n정수 stack 크기 = " << b.length() << endl;
+	try {
+		for (int i = 0;i < 9;i++) {
+			b.push((double)(i + 1) / 10);
+		}
+	}
+	catch (MyStackDataException e) {
+		e.print();
+	}
+	try {
+		for (int i = 0;i < 9;i++) {
+			b.pop();
+		}
+	}
+	catch (MyStackDataException e) {
+		e.print();
+	}
+	cout << "--------------------------------------------------\n";
 }
