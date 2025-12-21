@@ -499,101 +499,215 @@ using namespace std;
 //	}
 //	catch (OutOfBoundsException e) { e.print(); }
 //}
-#include <iostream>
-#include <cstring>
+//#include <iostream>
+//#include <cstring>
+//using namespace std;
+
+//class MyStackDataException {
+//	string msg;  // 예외에 대한 설명
+//	int size;  // 스택 데이터를 저장하는 배열의 크기
+//	int numOfData;  // 현재 스택에 들어있는 데이터 개수
+//public:
+//	MyStackDataException(string msg, int size, int numOfData) {
+//		this->msg = msg;
+//		this->size = size;
+//		this->numOfData = numOfData;
+//	}
+//	void print() {
+//		cout << msg << ", size = " << size << ", num of data = " << numOfData << endl;
+//	}
+//};
+//
+//template <typename T>
+//class MyGenStack {
+//	int tos = -1;
+//	int size;
+//	T* data;
+//public:
+//	MyGenStack(int size = 8) {
+//		this->size = size;
+//		data = new T[size];
+//	}
+//	~MyGenStack() {
+//		delete[] data;
+//	}
+//	void push(T element) throw(MyStackDataException) {
+//		cout << "push 시도\n";
+//		if (tos == size - 1) {
+//			throw MyStackDataException("Stack full", this->size, tos);
+//		}
+//		else {
+//			tos++;
+//			data[tos] = element;
+//			cout << "성공:" << element << endl;
+//		}
+//	}
+//	T pop() throw(MyStackDataException) {
+//		cout << "pop 시도\n";
+//		if (tos == -1) {
+//			throw MyStackDataException("Stack empty", this->size, tos);
+//		}
+//		else {
+//			cout << "성공:" << data[tos] << endl;
+//			return data[tos--];
+//		}
+//	}
+//	int length() {
+//		return size;
+//	}
+//};
+
+
+//int main() {
+//	MyGenStack<int> a(5);
+//	cout << "--------------------------------------------------\n정수 stack 크기 = " << a.length() << endl;
+//	try {
+//		for (int i = 0;i < 6;i++) {
+//			a.push(i + 1);
+//		}
+//	}
+//	catch (MyStackDataException e) {
+//		e.print();
+//	}
+//	try {
+//		for (int i = 0;i < 6;i++) {
+//			a.pop();
+//		}
+//	}
+//	catch (MyStackDataException e) {
+//		e.print();
+//	}
+//	MyGenStack<double> b;
+//	cout << "--------------------------------------------------\n정수 stack 크기 = " << b.length() << endl;
+//	try {
+//		for (int i = 0;i < 9;i++) {
+//			b.push((double)(i + 1) / 10);
+//		}
+//	}
+//	catch (MyStackDataException e) {
+//		e.print();
+//	}
+//	try {
+//		for (int i = 0;i < 9;i++) {
+//			b.pop();
+//		}
+//	}
+//	catch (MyStackDataException e) {
+//		e.print();
+//	}
+//	cout << "--------------------------------------------------\n";
+//}
+
+//#include <map>
+//#include <iostream>
+//#include <string>
+//using namespace std;
+//
+//class MyID {
+//	char code;
+//	int number;
+//public:
+//	MyID(char code, int number) {
+//		this->code = code;
+//		this->number = number;
+//	}
+//	friend ostream& operator<<(ostream& op1, const MyID& op2);
+//	bool operator <(MyID& const op2)const {
+//		if (code < op2.code)
+//			return true;
+//		else if (code == op2.code) {
+//			return number < op2.number;
+//		}
+//		else {
+//			return false;
+//		}
+//	}
+//};
+//ostream& operator<<(ostream& op1, const MyID& op2) {
+//	op1 << op2.code << op2.number;
+//	return op1;
+//}
+//int main() {
+//	map<MyID, string> students;
+//	map<MyID, string> ::iterator it;
+//	MyID a('a', 123), b('b', 456), c('c', 400);
+//	students[a] = "노현수";
+//	students[b] = "노윤수";
+//	students[c] = "바보들";
+//	for (it = students.begin();it != students.end();it++) {
+//		cout << it->first << ": " << it->second << endl;
+//	}
+//}
+
+// 13주차 map<key, value> 포인트!!!
+// int나 double 같은 기본 자료형은 컴파일러가 이미 크기 비교 방법을 알고 있습니다.
+// 하지만 사용자가 직접 만든 클래스(예: MyID, Power)는 어떤 기준으로 '더 작다'고 판단할지 컴파일러가 알 수 없습니다.
+// 따라서 키에 부등호가 적용되지 않는 타입을 키로 쓰려면 반드시 별도의 연산자 중복 구현이 필요합니다
+
+// 참조 반환 시, 즉, class A = a.operator(~)라면 해당 a 객체의 주소지가 반환 대상이다.
+//참조 반환은 다음 두 가지 약속이 필요할 때 사용한다고 기억하시면 정확합니다.
+//1. "방금 건드린 놈을 그대로 돌려줄 테니, 뒤에 다른 작업을 더 해!" (연속 작업)
+//2. "복사본이 아니라 실제 원본 주소를 줄 테니, 거기다가 바로 값을 써!" (수정 가능성)
+
+
+#include<iostream>
+#include<cstring>
+
 using namespace std;
 
-class MyStackDataException {
-	string msg;  // 예외에 대한 설명
-	int size;  // 스택 데이터를 저장하는 배열의 크기
-	int numOfData;  // 현재 스택에 들어있는 데이터 개수
+class Person {
+	int id;
+	char* name;
 public:
-	MyStackDataException(string msg, int size, int numOfData) {
-		this->msg = msg;
-		this->size = size;
-		this->numOfData = numOfData;
+	Person(int id, const char* name) {
+		this->id = id;
+		this->name = new char[strlen(name) + 1];
+		strcpy(this->name, name);
 	}
-	void print() {
-		cout << msg << ", size = " << size << ", num of data = " << numOfData << endl;
+	virtual ~Person() {
+		delete[] name;
+	}
+	virtual double strength()=0;
+	virtual void show() {
+		cout << name << id;
 	}
 };
-
-template <typename T>
-class MyGenStack {
-	int tos = -1;
-	int size;
-	T* data;
+class Student :public Person {
+	double gpa;
 public:
-	MyGenStack(int size = 8) {
-		this->size = size;
-		data = new T[size];
+	Student(int id, const char* name, double gpa) :Person(id, name) {
+		this->gpa = gpa;
 	}
-	~MyGenStack() {
-		delete[] data;
+	double strength() {
+		return gpa / 4.5 * 100;
 	}
-	void push(T element) throw(MyStackDataException) {
-		cout << "push 시도\n";
-		if (tos == size - 1) {
-			throw MyStackDataException("Stack full", this->size, tos);
-		}
-		else {
-			tos++;
-			data[tos] = element;
-			cout << "성공:" << element << endl;
-		}
-	}
-	T pop() throw(MyStackDataException) {
-		cout << "pop 시도\n";
-		if (tos == -1) {
-			throw MyStackDataException("Stack empty", this->size, tos);
-		}
-		else {
-			cout << "성공:" << data[tos] << endl;
-			return data[tos--];
-		}
-	}
-	int length() {
-		return size;
+	void show() {
+		Person::show();
+		cout << gpa;
 	}
 };
-
-
+class Staff :public Person {
+	int salary;
+public:
+	Staff(int id, const char* name, int salary) :Person(id, name) {
+		this->salary = salary;
+	}
+	double strength() {
+		return salary / 5;
+	}
+	void show() {
+		Person::show();
+		cout << salary;
+	}
+};
 int main() {
-	MyGenStack<int> a(5);
-	cout << "--------------------------------------------------\n정수 stack 크기 = " << a.length() << endl;
-	try {
-		for (int i = 0;i < 6;i++) {
-			a.push(i + 1);
-		}
+	Person* p[2];
+	p[0] = new Student(112, "police", 2.3);
+	p[1] = new Staff(114, "po", 3);
+	for (int i = 0;i < 2;i++) {
+		p[i]->show();
 	}
-	catch (MyStackDataException e) {
-		e.print();
+	for (int i = 0;i < 2;i++) {
+		delete p[i];
 	}
-	try {
-		for (int i = 0;i < 6;i++) {
-			a.pop();
-		}
-	}
-	catch (MyStackDataException e) {
-		e.print();
-	}
-	MyGenStack<double> b;
-	cout << "--------------------------------------------------\n정수 stack 크기 = " << b.length() << endl;
-	try {
-		for (int i = 0;i < 9;i++) {
-			b.push((double)(i + 1) / 10);
-		}
-	}
-	catch (MyStackDataException e) {
-		e.print();
-	}
-	try {
-		for (int i = 0;i < 9;i++) {
-			b.pop();
-		}
-	}
-	catch (MyStackDataException e) {
-		e.print();
-	}
-	cout << "--------------------------------------------------\n";
 }
