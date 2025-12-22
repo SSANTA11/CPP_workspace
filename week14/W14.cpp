@@ -16,27 +16,27 @@
 #include <iostream>
 #include <fstream>
 using namespace std;
-//int main() {
-//	const char* srcFile = "c:\\temp\\bullet.jpg";
-//	const char* destFile = "c:\\temp\\copybullet.jpg";
-//	ifstream fsrc(srcFile, ios::in | ios::binary);
-//	if (!fsrc) {
-//		cout << "fail to open" << endl;
-//		return 0;
-//	}
-//	ofstream fdest(destFile, ios::out | ios::binary);
-//	if (!fdest) {
-//		cout << "fail to write" << endl;
-//		return 0;
-//	}
-//	int c;
-//	while ((c = fsrc.get()) != EOF) {
-//		fdest.put(c);
-//	}
-//
-//	fsrc.close();
-//	fdest.close();
-//}
+int main() {
+	const char* srcFile = "c:\\temp\\bullet.jpg";
+	const char* destFile = "c:\\temp\\copybullet.jpg";
+	ifstream fsrc(srcFile, ios::in | ios::binary);
+	if (!fsrc) {
+		cout << "fail to open" << endl;
+		return 0;
+	}
+	ofstream fdest(destFile, ios::out | ios::binary);
+	if (!fdest) {
+		cout << "fail to write" << endl;
+		return 0;
+	}
+	int c;
+	while ((c = fsrc.get()) != EOF) {
+		fdest.put(c);
+	}
+
+	fsrc.close();
+	fdest.close();
+}
 
 //int main() {
 //	const char* file = "c:\\temp\\data.txt";
@@ -145,9 +145,9 @@ int main() {
 		cout << endl << i + 1 << " 번째 사람 정보 입력" << endl;
 		cout << "ID: ";
 		cin >> id;
-		cin.get();
+		cin.get();// 버퍼 내 잔여물 제거
 		cout << "이름: ";
-		cin.getline(name, LEN);
+		cin.getline(name, LEN);// 한줄 읽기
 		cout << "학생 1, 지원 2: ";
 		while (cin >> kind && (kind != 1 && kind != 2))
 			cout << "학생 1, 지원 2: ";
@@ -174,7 +174,6 @@ int main() {
 	for (i = 0; i < NUM; i++) {
 		delete p[i];
 	}
-
 }
 
 // 기말고사에서 가장 주요한 것은 추상클래스와 상속 동적 바인딩

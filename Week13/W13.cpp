@@ -28,7 +28,7 @@ using namespace std;
 // // 여기서 뒤에 const는 반드시 있어야 한다.!!!!!!?? Why???? 첫번째 const와 &는 없어도 됨! -->why??
 //		if (code < op2.code)
 //			return true;
-//		else if (code == op2.code) {
+//		else if (code           == op2.code) {
 //			return number < op2.number;
 //		}
 //		else
@@ -94,7 +94,7 @@ using namespace std;
 //int stringToInt(const char x[]) {
 //	int sum = 0, i = 0;
 //	while (x[i]) {
-//		if (x[i] >= '0' && x[i] == '9') {
+//		if (x[i] >= '0' && x[i] <= '9') {
 //			sum = sum * 10 + x[i] - '0';
 //		}
 //		else {
@@ -107,14 +107,15 @@ using namespace std;
 //int main() {
 //	try {
 //		int n = stringToInt("123");
-//		cout << " \"123\" 정수" << n << endl;
+//		cout << "\"123\" 정수" << n << endl;
 //		n = stringToInt("1A3");
-//		cout << " \"1A3\" 정수" << n << endl;
+//		cout << "\"123\" 정수" << n << endl;
 //	}
 //	catch (const char* s) {
-//		cout << s << "정수 변환 불가\n";
+//		cout << s << "정수 변환 불가";
 //	}
 //}
+
 
 //652pg*** 던지는 놈이 누군지 표시!!
 //class MyStack {
@@ -124,7 +125,7 @@ using namespace std;
 //	MyStack() {
 //		tos = -1;
 //		void push(int n) throw (char*) {
-//			if (tos == 99) throw "stackfull";
+//			if (tos             == 99) throw "stackfull";
 //			tos++;
 //			data[tos] = n;
 //		}

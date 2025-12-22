@@ -650,64 +650,350 @@ using namespace std;
 //2. "복사본이 아니라 실제 원본 주소를 줄 테니, 거기다가 바로 값을 써!" (수정 가능성)
 
 
-#include<iostream>
-#include<cstring>
+//#include<iostream>
+//#include<cstring>
+//
+//using namespace std;
+//
+//class Person {
+//	int id;
+//	char* name;
+//public:
+//	Person(int id, const char* name) {
+//		this->id = id;
+//		this->name = new char[strlen(name) + 1];
+//		strcpy(this->name, name);
+//	}
+//	virtual ~Person() {
+//		delete[] name;
+//	}
+//	virtual double strength()=0;
+//	virtual void show() {
+//		cout << name << id;
+//	}
+//};
+//class Student :public Person {
+//	double gpa;
+//public:
+//	Student(int id, const char* name, double gpa) :Person(id, name) {
+//		this->gpa = gpa;
+//	}
+//	double strength() {
+//		return gpa / 4.5 * 100;
+//	}
+//	void show() {
+//		Person::show();
+//		cout << gpa;
+//	}
+//};
+//class Staff :public Person {
+//	int salary;
+//public:
+//	Staff(int id, const char* name, int salary) :Person(id, name) {
+//		this->salary = salary;
+//	}
+//	double strength() {
+//		return salary / 5;
+//	}
+//	void show() {
+//		Person::show();
+//		cout << salary;
+//	}
+//};
+//int main() {
+//	Person* p[2];
+//	p[0] = new Student(112, "police", 2.3);
+//	p[1] = new Staff(114, "po", 3);
+//	for (int i = 0;i < 2;i++) {
+//		p[i]->show();
+//	}
+//	for (int i = 0;i < 2;i++) {
+//		delete p[i];
+//	}
+//}
 
-using namespace std;
+//int main() {
+//	int n, sum, average;
+//	while (true) {
+//		cout << "합, 인원 수 입력";
+//		cin >> sum >> n;
+//		try {
+//			if (n <= 0)
+//				throw n;
+//			else {
+//				average = sum / n;
+//			}
+//		}
+//		catch(int x){
+//			cout << n << "으로 평균을 구할 수 없음" << endl;
+//			continue;
+//		}
+//			cout << "평균 = " << average << endl;
+//	}
+//}
+
+//int stringToInt(const char x[]) {
+//	int sum = 0, i = 0;
+//	while (x[i]) {
+//		if (x[i] >= '0' && x[i] <= '9') {
+//			sum = sum * 10 + x[i] - '0';
+//		}
+//		else {
+//			throw x;
+//		}
+//		i++;
+//	}
+//	return sum;
+//}
+//int main() {
+//	try {
+//		int n = stringToInt("123");
+//		cout << "\"123\" 정수" << n << endl;
+//		n = stringToInt("1A3");
+//		cout << "\"123\" 정수" << n << endl;
+//	}
+//	catch(const char* s){
+//		cout << s << "정수 변환 불가";
+//	}
+//}
+//class MyException {
+//	int lineNumber;
+//	string func, msg;
+//public:
+//	MyException(int lineNumber, string func, string msg) {
+//		this->lineNumber = lineNumber;
+//		this->func = func;
+//		this->msg = msg;
+//	}
+//	void print() {
+//		cout << func << ":" << lineNumber << ", " << msg << endl;
+//	}
+//};
+//class DivideByZeroException :public MyException {
+//public:
+//	DivideByZeroException(int lineNumber, string func, string msg) : MyException(lineNumber, func, msg) {};
+//};
+//class InvalidInputException :public MyException {
+//public:
+//	InvalidInputException(int lineNumber, string func, string msg) : MyException(lineNumber, func, msg) {};
+//};
+//
+//int main() {
+//	int x, y;
+//	try {
+//		cout << "양의 정수 두개를 입력";
+//		cin >> x >> y;
+//		if (x < 0 || y < 0) {
+//			throw InvalidInputException(__LINE__, __FUNCTION__,"라인에서 음수 입력 예외 발생");
+//		}
+//		else if (y == 0) {
+//			throw DivideByZeroException(__LINE__, __FUNCTION__,"라인에서 0으로 나눔 예외 발생");
+//		}
+//	}
+//	catch(InvalidInputException e){
+//		e.print();
+//	}
+//	catch(DivideByZeroException e){
+//		e.print();	
+//	}
+//}
+
+//#include <iostream>
+//#include <fstream>
+//
+//using namespace std;
+//
+//int main() {
+//	const char* wall = "c:\\temp\\wall.png";
+//	const char* copyWall = "c:\\temp\\copyWall.png";
+//	ifstream fsrc(wall, ios::in | ios::binary);
+//	if (!fsrc) {
+//		cout << "fail to open" << endl;
+//		return 0;
+//	}
+//	ofstream fdest(copyWall, ios::out, ios::binary);
+//	if (!fdest) {
+//		cout << "fail to write" << endl;
+//		return 0;
+//	}
+//	int c;
+//	while ((c = fsrc.get()) != EOF) {
+//		fdest.put((char)c);
+//	}
+//	fsrc.close();
+//	fdest.close();
+//}
+//#include <iostream>
+//#include<fstream>
+//int main() {
+//	const char* file = "c:\\temp\\data.txt";
+//	ofstream fout;
+//	fout.open(file, ios::out | ios::binary);
+//	if (!fout) {
+//		return 0;
+//	}
+//	int n[] = { 1,2,3,4,5,6,7,8,9,0 };
+//	double d = 3.15;
+//	fout.write((char*)n, sizeof(n));
+//	fout.write((char*)&d, sizeof(d));
+//
+//
+//
+//	for (int i = 0;i < 10;i++) {
+//		n[i] = 99;
+//	}
+//	d = 8.15;
+//	ifstream fin(file, ios::in | ios::binary);
+//	if (!fin) {
+//		return 0;
+//	}
+//	fin.read((char*)n, sizeof(n));
+//	fin.read((char*)&d, sizeof(d));
+//	for (int i = 0;i < 10;i++) {
+//		cout << n[i] << endl;
+//	}
+//	cout << endl << d << endl;
+//	fin.close();
+//}
+
+
+//#include<iostream>
+//#include<fstream>
+// int main() {
+//	const char* file = "c:\\temp\\data.txt";
+//
+//	ofstream fout;
+//	fout.open(file, ios::out | ios::binary);
+//	if (!fout) { return 1; }
+//
+//	int n[] = { 1,2,3,4,5,6,7,8,9,0 };
+//	double d = 3.14;
+//
+//	fout.write((char*)n, sizeof(n));
+//	fout.write((char*)&d, sizeof(d));
+//
+//	// ★핵심 수정 1: 쓰기가 끝나면 무조건 먼저 닫아줍니다. (저장 완료)
+//	fout.close();
+//
+//
+//	// ★핵심 수정 2: 값을 망가뜨려야, 나중에 읽었는지 확인할 수 있습니다.
+//	for (int i = 0; i < 10; i++) n[i] = 0;
+//	d = 0.0;
+//
+//
+//	cout << "복구된 d: " << d << endl;
+//	ifstream fin(file, ios::in | ios::binary);
+//	if (!fin) { return 1; }
+//
+//	fin.read((char*)n, sizeof(n));
+//	fin.read((char*)&d, sizeof(d));
+//
+//	fin.close(); // 다 읽었으면 닫기
+//
+//	// 결과 확인용 출력
+//	cout << "복구된 d: " << d << endl;
+//	return 0;
+//}
 
 class Person {
 	int id;
 	char* name;
 public:
-	Person(int id, const char* name) {
+	Person(int id, const char* n) {
 		this->id = id;
-		this->name = new char[strlen(name) + 1];
-		strcpy(this->name, name);
+		int len = strlen(n) + 1;
+		this->name = new char[len];
+		strcpy_s(name, len, n); // CRT_SCURE_NO_WARNINGS 할 필요 없음
 	}
 	virtual ~Person() {
-		delete[] name;
+		cout << "~Person()" << name << endl;
+		if (name) {
+			delete[] name;
+		}
 	}
-	virtual double strength()=0;
+	int getID() const {
+		return id;
+	}
+	const char* getName() {
+		return name;
+	}
+	virtual int strength() = 0;
 	virtual void show() {
-		cout << name << id;
+		Person::show();
+		cout << "ID=" << id << ", 이름=" << name << ", 체력" << strength();
 	}
 };
 class Student :public Person {
 	double gpa;
 public:
-	Student(int id, const char* name, double gpa) :Person(id, name) {
-		this->gpa = gpa;
+	Student(int i, const char* n, double g) : Person(i, n) {
+		gpa = g;
 	}
-	double strength() {
+	~Student() {
+		cout << "~Student\n";
+	}
+	virtual int strength() {
 		return gpa / 4.5 * 100;
 	}
-	void show() {
+	virtual void show() {
 		Person::show();
-		cout << gpa;
+		cout << " ,평점=" << gpa;
 	}
 };
 class Staff :public Person {
 	int salary;
 public:
-	Staff(int id, const char* name, int salary) :Person(id, name) {
-		this->salary = salary;
+	Staff(int i, const char* n, int s) : Person(i, n) {
+		salary = s;
 	}
-	double strength() {
+	~Staff() {
+		cout << "~Staff\n";
+	}
+	virtual int strength() {
 		return salary / 5;
 	}
-	void show() {
+	virtual void show() {
 		Person::show();
-		cout << salary;
+		cout << " ,월급=" << salary;
 	}
 };
+const int NUM = 5;
+const int LEN = 20;
 int main() {
-	Person* p[2];
-	p[0] = new Student(112, "police", 2.3);
-	p[1] = new Staff(114, "po", 3);
-	for (int i = 0;i < 2;i++) {
-		p[i]->show();
+	Person* p[NUM];
+	int i, id, kind, salary;
+	char name[LEN];
+	double gpa;
+	for (int i = 0;i < NUM;i++) {
+		cout << endl << i + 1 << " 번째 사람 정보 입력" << endl;
+		cout << "ID: ";
+		cin >> id;
+		cin.get();
+		cout << "이름: ";
+		cin.getline(name, LEN);
+		cout << "학생 1, 학생 2: ";
+		while (cin >> kind && (kind != 1 && kind != 2)) {
+			cout << "학생 1, 지원 2: ";
+		}
+		if (kind == 1) {
+			cout << "평점: ";
+			cin >> gpa;
+			p[i] = new Student(id, name, gpa);
+		}
+		else if (kind == 2) {
+			cout << "월급: ";
+			cin >> salary;
+			p[i] = new Student(id, name, salary);
+		}
 	}
-	for (int i = 0;i < 2;i++) {
+	for (i = 0;i < NUM;i++) {
+		cout << "ID= " << p[i]->getID() << " 이름=" << p[i]->getName() << endl;
+	}
+	for (i = 0;i < NUM;i++) {
+		p[i]->show();
+		cout << endl;
+	}
+	for (i = 0;i < NUM;i++) {
 		delete p[i];
 	}
 }
