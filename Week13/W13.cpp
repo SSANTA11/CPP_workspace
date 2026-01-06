@@ -125,7 +125,7 @@ using namespace std;
 //	MyStack() {
 //		tos = -1;
 //		void push(int n) throw (char*) {
-//			if (tos             == 99) throw "stackfull";
+		//if (tos == 99) throw "stackfull";
 //			tos++;
 //			data[tos] = n;
 //		}
@@ -143,7 +143,7 @@ using namespace std;
 //			cout << s.pop() << endl;
 //			cout << s.pop() << endl;
 //		}
-//		catch (cont char* s) {
+//		catch (const char* s) {
 //			cout << "예외 발생 : " << s << endl;
 //		}
 //	}
